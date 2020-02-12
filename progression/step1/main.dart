@@ -58,20 +58,15 @@ class _ClockState extends State<MyFlutterClock> {
       _date = DateFormat.yMMMd(locale).format(rightNow);
       _time = DateFormat('hh:mm:ss').format(rightNow);
       if (_sunSet == '' || _time.endsWith('0:00')) {
-        final october = DateTime(2020, 10, 15);
-
-        // Create berlin calculator
         const locationSunCalculator = const DaylightCalculator(daylightLocation);
-
-        // calculate for sunrise on civil twilight
         final civilSunrise = locationSunCalculator.calculateEvent(
-          october,
+          rightNow,
           Zenith.civil,
           EventType.sunrise,
         );
         _sunRise = DateFormat("HH:mm:ss").format(civilSunrise);
         final civilSunset = locationSunCalculator.calculateEvent(
-          october,
+          rightNow,
           Zenith.civil,
           EventType.sunset,
         );
