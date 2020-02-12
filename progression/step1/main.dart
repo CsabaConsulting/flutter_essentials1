@@ -37,13 +37,6 @@ class _ClockState extends State<MyFlutterClock> {
   var _sunRise = '';
   Timer _timer;
   static const daylightLocation = DaylightLocation(36.7320866, -119.7858041);
-  int _tz = 0;
-
-  void _incrementTimezone() {
-    setState(() {
-      _tz++;
-    });
-  }
 
   @override
   void initState() {
@@ -60,7 +53,7 @@ class _ClockState extends State<MyFlutterClock> {
 
   void _updateTime() {
     setState(() {
-      var rightNow = DateTime.now().add(Duration(hours: _tz));
+      var rightNow = DateTime.now();
       const locale = 'en-US';  // Localizations.localeOf(context).toString();
       _date = DateFormat.yMMMd(locale).format(rightNow);
       _time = DateFormat('hh:mm:ss').format(rightNow);
@@ -111,11 +104,6 @@ class _ClockState extends State<MyFlutterClock> {
             ],
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementTimezone,
-        tooltip: 'Add an hour',
-        child: Icon(Icons.add),
       ),
     );
   }
